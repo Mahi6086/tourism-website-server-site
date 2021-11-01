@@ -77,6 +77,23 @@ async function run() {
       const result = await servicesCollection2.deleteOne(query);
       res.json(result);
     });
+
+    app.put("/updateStatus", async (req, res) => {
+      const id = req.body.id;
+      const query = { _id: ObjectId(id) };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          status: "Approved",
+        },
+      };
+      const service = await servicesCollection2.updateOne(
+        query,
+        updateDoc,
+        options
+      );
+      res.send(service);
+    });
   } finally {
     // await client.close();
   }

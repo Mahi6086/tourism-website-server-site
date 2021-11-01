@@ -77,7 +77,7 @@ async function run() {
       const result = await servicesCollection2.deleteOne(query);
       res.json(result);
     });
-
+    // Pending to Approved API
     app.put("/updateStatus", async (req, res) => {
       const id = req.body.id;
       const query = { _id: ObjectId(id) };
